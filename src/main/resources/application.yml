@@ -3,8 +3,8 @@ spring:
   mail:
     host: smtp.mailtrap.io
     port: 25
-    username:
-    password:
+    username: 4cd81fdec151b1
+    password: e3e46c5a4f8988
     protocol: smtp
   jpa:
     hibernate:
@@ -16,5 +16,6 @@ spring:
     url: "jdbc:postgresql://localhost:5432/spring-reddit"
     username: joseph
     password: password
+
 server:
   port: 8181
