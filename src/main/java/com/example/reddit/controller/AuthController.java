@@ -4,6 +4,7 @@ package com.example.reddit.controller;
 import com.example.reddit.dto.AuthenticationResponse;
 import com.example.reddit.dto.LoginRequest;
 import com.example.reddit.dto.RegisterRequest;
+import com.example.reddit.models.User;
 import com.example.reddit.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,8 +32,13 @@ public class AuthController {
 
     }
 
+    @GetMapping("/getUser/{username}")
+    public User getUserByUsername(@PathVariable String username){
+       return  authService.getUserByUserName(username);
+    }
     @PostMapping("/login")
     public AuthenticationResponse loginUser(@RequestBody LoginRequest loginRequest) {
         return authService.loginUser(loginRequest);
     }
+
 }
