@@ -15,12 +15,12 @@ public interface SubredditMapper {
     @Mapping(target = "numberOfPosts", expression = "java(mapPosts(subreddit.getPostList()))")
     SubredditDto mapSubredditToDto(Subreddit subreddit);
 
-    default Integer mapPosts(List<Post> numberOfPosts){
+    default Integer mapPosts(List<Post> numberOfPosts) {
         return numberOfPosts.size();
     }
+
     @InheritInverseConfiguration
     @Mapping(target = "postList", ignore = true)
-    Subreddit mapDtoToSubreddit(SubredditDto subreddit);
-
-
+    Subreddit mapDtoToSubreddit(SubredditDto subredditDto);
 }
+
