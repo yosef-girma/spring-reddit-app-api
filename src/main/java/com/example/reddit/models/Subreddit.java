@@ -14,7 +14,6 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Subreddit {
 
     @Id
