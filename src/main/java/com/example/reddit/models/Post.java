@@ -30,6 +30,7 @@ public class Post {
     @Nullable
     @Lob
     private String description;
+
     private Integer voteCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
