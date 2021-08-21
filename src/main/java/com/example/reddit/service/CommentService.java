@@ -2,6 +2,7 @@ package com.example.reddit.service;
 
 import com.example.reddit.dto.CommentsDto;
 import com.example.reddit.exceptions.PostNotFoundException;
+import com.example.reddit.exceptions.SpringRedditException;
 import com.example.reddit.exceptions.UsernameNotFoundException;
 import com.example.reddit.mapper.CommentMapper;
 import com.example.reddit.models.Comment;
@@ -12,6 +13,7 @@ import com.example.reddit.repository.CommentRepository;
 import com.example.reddit.repository.PostRepository;
 import com.example.reddit.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,7 @@ import static java.util.stream.Collectors.toList;
 
 @Service
 @AllArgsConstructor
+
 @Slf4j
 @Transactional
 public class CommentService {
@@ -67,4 +70,10 @@ public class CommentService {
                 .collect(toList());
     }
 
+    public boolean containsSwearWords(String comment) {
+        if (comment.contains("shit")) {
+            throw new SpringRedditException("Comments contains unacceptable language");
+        }
+        return false;
+    }
 }
