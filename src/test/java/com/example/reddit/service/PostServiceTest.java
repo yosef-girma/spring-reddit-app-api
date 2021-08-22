@@ -9,6 +9,7 @@ import com.example.reddit.models.User;
 import com.example.reddit.repository.PostRepository;
 import com.example.reddit.repository.SubredditRepository;
 import com.example.reddit.repository.UserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +27,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class PostServiceTest {
 
+    /*
+     BeforeEach
+     Mockito
+
+     */
     @Mock
     private  PostRepository postRepository;
     @Mock
@@ -39,10 +45,15 @@ class PostServiceTest {
     @Captor
     private  ArgumentCaptor<Post>  postArgumentCaptor;
 
+    private PostService postService;
+
+    @BeforeEach
+    public  void setup(){
+        postService = new PostService(postRepository,subredditRepository,userRepository,authService,postMapper);
+    }
     @Test
     @DisplayName("Should find post by id")
     void findPostById() {
-        PostService postService = new PostService(postRepository,subredditRepository,userRepository,authService,postMapper);
 
         Post post = new Post(123L, "First Post", "http://url.site", "Test",
                 0, null, Instant.now(), null);
@@ -61,7 +72,6 @@ class PostServiceTest {
     @Test
     @DisplayName("Should save post ")
     void shouldSavePost(){
-        PostService postService = new PostService(postRepository, subredditRepository, userRepository, authService, postMapper);
 
         User user = new User(12L,"hello","pass","yoef.gkel@gmail.com",Instant.now(),false);
         PostRequest postRequest = new PostRequest(1L,"test1","post name","http://hell.com","description");
